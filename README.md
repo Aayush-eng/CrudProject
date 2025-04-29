@@ -219,3 +219,22 @@ Okay, now that we've updated the code with the `@JsonManagedReference` and `@Jso
     * **Expected Result:** A 204 No Content response.
 
 This is the complete text. Just copy and paste it into your preferred document editor, and you can then save it as a Word file, PDF, or any other format you need.
+
+Flow-Chart
+
+  +-----------------+     HTTP Request     +--------------------+     Service Logic     +--------------------+     Database     +-----------------+
+   |  Client (e.g.,  |--------------------->|   Controller     |--------------------->|      Service       |--------------------->|   Repository   |--------------------->|   Database     |
+   |     Postman)    |                     | (UserController)   |  (UserService)       |   (UserRepository)  |     (MySQL)     |
+   +-----------------+                     +--------------------+                     +--------------------+                     +-----------------+
+                                                                                         ^                                          |
+                                                                                         | HTTP Response                              |
+                                                                                         +--------------------+                     |
+                                                                                         |   Controller     |<---------------------|
+                                                                                         | (UserController)   |                     |
+                                                                                         +--------------------+                     |
+                                                                                               |<--------------------------------------|
+                                                                                               |
+                                                                                         +-----------------+
+                                                                                         |  Client (e.g.,  |
+                                                                                         |     Postman)    |
+                                                                                         +-----------------+
