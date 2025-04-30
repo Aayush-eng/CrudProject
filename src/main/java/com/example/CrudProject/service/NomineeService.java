@@ -5,6 +5,7 @@ import com.example.CrudProject.repository.NomineeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NomineeService {
@@ -33,5 +34,13 @@ public class NomineeService {
 
     public void deleteNominee(Long id) {
         nomineeRepository.deleteById(id);
+    }
+
+    public Optional<Nominee> updateNominee(Long id, Nominee nominee) {
+        return nomineeRepository.findById(id)
+                .map(existingNominee -> {
+                    nominee.setNomineeId(id); // Ensure ID is set for update
+                    return nomineeRepository.save(nominee);
+                });
     }
 }

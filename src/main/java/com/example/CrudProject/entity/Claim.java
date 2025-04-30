@@ -1,5 +1,6 @@
 package com.example.CrudProject.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,9 +15,9 @@ public class Claim {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private User user;
 
-    // Getters and Setters
     public Long getClaimId() {
         return claimId;
     }
