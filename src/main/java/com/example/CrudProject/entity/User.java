@@ -1,7 +1,6 @@
 package com.example.CrudProject.entity;
 
-import jakarta.persistence.Id;
-
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -19,7 +18,12 @@ public class User {
     private int age;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference // Forward part of the reference
     private List<Claim> claims;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonManagedReference // Forward part of the reference
+    private List<Nominee> nominees;
 
     public Long getUserId() {
         return userId;
@@ -75,5 +79,13 @@ public class User {
 
     public void setClaims(List<Claim> claims) {
         this.claims = claims;
+    }
+
+    public List<Nominee> getNominees() {
+        return nominees;
+    }
+
+    public void setNominees(List<Nominee> nominees) {
+        this.nominees = nominees;
     }
 }

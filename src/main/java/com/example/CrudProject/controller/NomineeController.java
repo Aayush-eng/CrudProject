@@ -2,10 +2,12 @@ package com.example.CrudProject.controller;
 
 import com.example.CrudProject.entity.Nominee;
 import com.example.CrudProject.service.NomineeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/nominees")
@@ -42,5 +44,10 @@ public class NomineeController {
     public ResponseEntity<Void> deleteNominee(@PathVariable Long id) {
         nomineeService.deleteNominee(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Optional<Nominee>> updateNominee(@PathVariable Long id, @RequestBody Nominee nominee) {
+        return ResponseEntity.ok(nomineeService.updateNominee(id, nominee));
     }
 }
